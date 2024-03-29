@@ -1,4 +1,4 @@
-
+import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 from pytube import YouTube
@@ -6,104 +6,124 @@ from tkinter.messagebox import showinfo, showerror, askokcancel
 import threading
 import os
 
-# Backend ----------------------------------------------
+
+# Backend---                                                                                                         ---
 def close_window():
-    # if askokcancel is True, close the window
+    """
+    Function that and asks user to confirm when the x button is pressed and closes the window.
+    """
+    # asks the user to confirm
     if askokcancel(title='Close', message='Do you want to close MP3 downloader?'):
-        # this destroys the window
         window.destroy()
 
-# the function to download the mp3 audio
+
 def download_audio():
-    # the try statement to execute the download the video code
-    # getting video url from entry
+    """
+    Function that downloads audio from YouTube url entered in entry, converts it to MP3 and saves it to music directory.
+    """
+    # gets video url from entry
     mp3_link = url_entry.get()
-    # checking if the entry and combobox is empty
+
+    # if the entry is empty show an error
     if mp3_link == '':
-        # display error message when url entry is empty
         showerror(title='Error', message='Please enter the MP3 URL')
-    # else let's download the audio file
+
     else:
-        # this try statement will run if the mp3 url is filled
         try:
-            # this function will track the audio file download progress
             def on_progress(stream, chunk, bytes_remaining):
+                """
+                Function that tracks the progress of downloading.
+                :param stream: stream
+                :param chunk: chunk
+                :param bytes_remaining: remaining bytes
+                """
                 # the total size of the audio
                 total_size = stream.filesize
 
-                # this function will get the size of the audio file
                 def get_formatted_size(total_size, factor=1024, suffix='B'):
-                    # looping through the units
+                    """
+                    Function that gets the total size of the audio
+                    :param total_size: total size in bytes
+                    :param factor: factor
+                    :param suffix: suffix
+                    :return: formatted audio file size
+                    """
                     for unit in ["", "K", "M", "G", "T", "P", "E", "Z"]:
                         if total_size < factor:
                             return f"{total_size:.2f}{unit}{suffix}"
                         total_size /= factor
-                    # returning the formatted audio file size
                     return f"{total_size:.2f}Y{suffix}"
 
-                # getting the formatted audio file size calling the function
+                # updating progress bar
                 formatted_size = get_formatted_size(total_size)
-                # the size downloaded after the start
                 bytes_downloaded = total_size - bytes_remaining
-                # the percentage downloaded after the start
                 percentage_completed = round(bytes_downloaded / total_size * 100)
-                # updating the progress bar value
                 progress_bar['value'] = percentage_completed
-                # updating the empty label with the percentage value
                 progress_label.config(text=str(percentage_completed) + '%, File size:' + formatted_size)
-                # updating the main window of the app
                 window.update()
 
-            # creating the YouTube object and passing the on_progress function
+            # create a music directory to store downloaded files
+            music_folder = os.path.join(os.getcwd(), 'music')
+            os.makedirs(music_folder, exist_ok=True)
             audio = YouTube(mp3_link, on_progress_callback=on_progress)
-            # extracting and downloading the audio file
-            output = audio.streams.get_audio_only().download()
-            # this splits the audio file, the base and the extension
+            audio_stream = audio.streams.get_audio_only()
+            output = audio_stream.download(output_path=music_folder)
             base, ext = os.path.splitext(output)
-            # this converts the audio file to mp3 file
+            # convert to MP3
             new_file = base + '.mp3'
-            # this renames the mp3 file
             os.rename(output, new_file)
+
             # popup for displaying the mp3 downloaded success message
             showinfo(title='Download Complete', message='MP3 has been downloaded successfully.')
-            # resetting the progress bar and the progress label
             progress_label.config(text='')
             progress_bar['value'] = 0
-            # the except will run when an expected error occurs during downloading
+
         except:
             showerror(title='Download Error', message='An error occurred while trying to ' \
                                                       'download the MP3\nThe following could ' \
                                                       'be the causes:\n->Invalid link\n->No internet connection\n' \
                                                       'Make sure you have stable internet connection and the MP3 link is valid')
-            # resetting the progress bar and the progress label
             progress_label.config(text='')
             progress_bar['value'] = 0
 
-# the function to run the download_audio function as a thread
-def downloadThread():
+
+def download_thread():
+    """
+    Function that runs the download as a thread.
+    """
     t1 = threading.Thread(target=download_audio)
     t1.start()
 
-# GUI/Frontend ------------------------------------------------------
-# creates the window using Tk() function
+
+# GUI/Frontend---                                                                                                    ---
 window = Tk()
-
-# this will listen to the close window event
 window.protocol('WM_DELETE_WINDOW', close_window)
-
-# creates title for the window
 window.title('MP3 Downloader')
-# the icon for the application, this will replace the default tkinter icon
-# window.iconbitmap(window, 'icon.ico')
-# dimensions and position of the window
-window.geometry('500x400+430+180')
-# makes the window non-resizable
 window.resizable(height=FALSE, width=FALSE)
-# creates the canvas for containing all the widgets
-canvas = Canvas(window, width=500, height=400)
+canvas = Canvas(window, width=1132, height=743)
 canvas.pack()
 
-# Styles for the widgets ----------------------------------------------
+# loading the background
+window.iconbitmap(window, 'assets/icon.ico')
+background = PhotoImage(file='assets/background.png')
+canvas.create_image(0, 0, anchor=tk.NW, image=background)
+
+# url entry and label
+url_label = ttk.Label(window, text='Enter YouTube URL:', style='TLabel', background='white')
+url_entry = ttk.Entry(window, width=50, style='TEntry')
+canvas.create_window(566, 530, window=url_label)
+canvas.create_window(566, 560, window=url_entry)
+
+# download progress bar
+progress_label = Label(window, text='')
+canvas.create_window(566, 600, window=progress_label)
+progress_bar = ttk.Progressbar(window, orient=HORIZONTAL, length=450, mode='determinate')
+canvas.create_window(566, 650, window=progress_bar)
+
+# download button
+download_button = ttk.Button(window, text='Download MP3', style='TButton', command=download_thread)
+canvas.create_window(566, 600, window=download_button)
+
 # style for the label
 label_style = ttk.Style()
 label_style.configure('TLabel', foreground='#000000', font=('OCR A Extended', 15))
@@ -112,43 +132,6 @@ entry_style = ttk.Style()
 entry_style.configure('TEntry', font=('Dotum', 15))
 # style for the button
 button_style = ttk.Style()
-button_style.configure('TButton', foreground='#000000', font='DotumChe')
+button_style.configure('TButton', foreground='#000000', font='DotumChe', background='white')
 
-# loading the MP3 logo
-logo = PhotoImage(file='background.png')
-# creates dimensions for the logo
-logo = logo.subsample(1, 1)
-# adding the logo to the canvas
-canvas.create_image(200, 200, image=logo)
-
-# the Downloader label just next to the logo
-mp3_label = ttk.Label(window, text='Downloader')
-canvas.create_window(340, 125, window=mp3_label)
-
-# creating a ttk label
-url_label = ttk.Label(window, text='Enter MP3 URL:', style='TLabel')
-# creating a ttk entry
-url_entry = ttk.Entry(window, width=50, style='TEntry')
-# adding the label to the canvas
-canvas.create_window(114, 200, window=url_label)
-# adding the entry to the canvas
-canvas.create_window(250, 230, window=url_entry)
-
-# creating the empty label for displaying download progress
-progress_label = Label(window, text='')
-# adding the label to the canvas
-canvas.create_window(240, 280, window=progress_label)
-# creating a progress bar to display progress
-progress_bar = ttk.Progressbar(window, orient=HORIZONTAL, length=450, mode='determinate')
-# adding the progress bar to the canvas
-canvas.create_window(250, 300, window=progress_bar)
-
-# creating the button
-download_button = ttk.Button(window, text='Download MP3', style='TButton', command=downloadThread)
-# adding the button to the canvas
-canvas.create_window(240, 330, window=download_button)
-
-# this runs the app infinitely
 window.mainloop()
-
-# Example link: https://www.youtube.com/watch?v=0habxsuXW4g
