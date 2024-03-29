@@ -6,7 +6,7 @@ YouTube to MP3 Converter allows you to convert your favorite YouTube videos to M
 ## instructions:
 
 1. extract the files in a single folder
-2. Navigate into the ```YouTubeToMP3/app``` folder and install
+2. Navigate into the ```YouTubeToMP3``` folder and install
 - ```pip install -r requirements.txt```
 3. run the YouTubeToMP3 python file
 - ```python3 YoutubeToMP3.py ```
