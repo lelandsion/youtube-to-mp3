@@ -1,7 +1,7 @@
 # YouTubeToMP3
 
 
-YouTube to MP3 Converter allows you to convert your favorite YouTube videos to MP3 (audio)  files and to download them easily. Now available in the web version([https://ytmp3ls.com](url)).
+YouTube to MP3 Converter allows you to convert your favorite YouTube videos to MP3 (audio)  files and to download them easily. Now available in the web version(https://ytmp3ls.com).
 
 ## instructions:
 
