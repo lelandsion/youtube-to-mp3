@@ -1,0 +1,92 @@
+.background {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.container {
+    width 100%
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center;
+    align-items: center;
+}
+
+.youtube_to_mp3_img {
+    width: 100%;
+}
+
+.convert_form {
+    width: 100%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.label {
+    font-size: 20px;
+    font-family: "DM Sans", sans-serif;
+}
+
+form {
+    text-align: center; /* Center the content within the form */
+}
+
+input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    max-width: 594px;
+    height: 40px; /* Adjust the height as needed */
+    width: 98%;
+}
+
+button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%; /* Adjust the width as needed */
+    max-width: 600px;
+    height: 40px; /* Adjust the height as needed */
+    font-size: 16px; /* Adjust the font size as needed */
+    font-family: "DM Sans", sans-serif;
+}
+
+
+.title {
+    text-align: center;
+}
+
+.instructions {
+    max-width: 600px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "DM Sans", sans-serif;
+}
+
+ol {
+    counter-reset: list-counter; /* Reset the counter */
+    padding-left: 0; /* Remove default left padding */
+}
+
+/* Style for the list items */
+ol li {
+    counter-increment: list-counter; /* Increment the counter */
+    margin-bottom: 15px; /* Add spacing between list items */
+    list-style-type: none; /* Remove default numbering */
+}
+
+/* Style for the number */
+ol li:before {
+    content: counter(list-counter) "."; /* Display the counter value with period */
+    font-weight: bold; /* Make only the numbers bold */
+    margin-right: 5px; /* Add spacing between the number and the text */
+}
+
+/* Style for the paragraph below the number */
+ol li p {
+    margin-top: 0; /* Add margin between the number and the paragraph */
+    margin-left: 20px; /* Indent the paragraph */
+}
