@@ -10,17 +10,17 @@
         :ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5564763889939433"
         crossorigin="anonymous"></script>
-        <!-- <script src="script.js" defer></script>-->
+        <script src="../static/script.js" defer></script>
     </head>
     <body>
         <div class="container">
             <div class="youtube_to_mp3_image">
                 <img src="static/assets/background.png" class="background">
             </div>
-            <form action="/convert" method="post" enctype="multipart/form-data">
+            <form id="conversionForm" enctype="multipart/form-data" onsubmit="event.preventDefault(); startConversion();">
                 <label for="youtube_link" class="label">Enter YouTube Video URL:</label><br>
                 <input type="text" id="youtube_link" name="youtube_link"><br>
-                <button type="submit">Convert & Download</button>
+                <button type="submit" id="convertButton">Convert & Download</button>
             </form>
         </div>
         <div class="instructions">
@@ -35,4 +35,5 @@
             </ol>
         </div>
     </body>
+
 </html>
