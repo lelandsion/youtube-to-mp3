@@ -1,84 +1,80 @@
+/* General Styles */
 .background {
-   display: block;
-   margin-left: auto;
-   margin-right: auto;
+   display: block; /* Centers the background element */
+   margin-left: auto; /* Automatic left margin */
+   margin-right: auto; /* Automatic right margin */
 }
 
+/* Image Styles */
 .youtube_to_mp3_img {
-    width: 100%;
-}
-
-.convert_form {
-    width: 100%;
+    width: 100%; /* Makes the image responsive */
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+    max-width: 100%; /* Ensures images do not overflow their containers */
+    height: auto; /* Maintains aspect ratio */
 }
 
-.label {
-    font-size: 20px;
-    font-family: "DM Sans", sans-serif;
+/* Form Styles */
+.convert_form {
+    width: 100%; /* Full width for the conversion form */
 }
 
 form {
-    text-align: center;
+    text-align: center; /* Centers the content of the form */
 }
 
 input {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    max-width: 594px;
-    height: 40px;
-    width: 98%;
+    margin-top: 10px; /* Top margin for spacing */
+    margin-bottom: 10px; /* Bottom margin for spacing */
+    max-width: 594px; /* Maximum width for input fields */
+    height: 40px; /* Fixed height for input fields */
+    width: 98%; /* Width is almost full, allowing for margins */
 }
 
 button {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    max-width: 600px;
-    height: 40px;
-    font-size: 16px;
-    font-family: "DM Sans", sans-serif;
+    margin-top: 10px; /* Top margin for spacing */
+    margin-bottom: 10px; /* Bottom margin for spacing */
+    width: 100%; /* Full width for the button */
+    max-width: 600px; /* Maximum width for the button */
+    height: 40px; /* Fixed height for the button */
+    font-size: 16px; /* Font size for the button text */
+    font-family: "DM Sans", sans-serif; /* Font family for the button */
 }
 
-
+/* Title and Instructions Styles */
 .title {
-    text-align: center;
+    text-align: center; /* Centers the title */
 }
 
 .instructions {
-    max-width: 600px;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: "DM Sans", sans-serif;
+    max-width: 600px; /* Maximum width for the instructions text */
+    margin-top: 100px; /* Top margin for spacing */
+    margin-bottom: 100px; /* Bottom margin for spacing */
+    margin-left: auto; /* Automatic left margin for centering */
+    margin-right: auto; /* Automatic right margin for centering */
+    font-family: "DM Sans", sans-serif; /* Font family for the instructions text */
 }
 
+/* Ordered List Styles */
 ol {
-    counter-reset: list-counter;
-    padding-left: 0;
+    counter-reset: list-counter; /* Resets the counter for the list */
+    padding-left: 0; /* Removes default padding */
 }
-
 
 ol li {
-    counter-increment: list-counter;
-    margin-bottom: 15px;
-    list-style-type: none;
+    counter-increment: list-counter; /* Increments the list counter */
+    margin-bottom: 15px; /* Bottom margin for spacing between list items */
+    list-style-type: none; /* Removes default list style */
 }
-
 
 ol li:before {
-    content: counter(list-counter) ".";
-    font-weight: bold;
-    margin-right: 5px;
+    content: counter(list-counter) "."; /* Adds counter before each list item */
+    font-weight: bold; /* Makes the counter bold */
+    margin-right: 5px; /* Right margin for spacing between counter and text */
 }
 
-
 ol li p {
-    margin-top: 0;
-    margin-left: 20px;
+    margin-top: 0; /* Removes top margin from paragraphs inside list items */
+    margin-left: 20px; /* Left margin for indentation */
 }
