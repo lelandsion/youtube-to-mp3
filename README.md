@@ -1,4 +1,4 @@
-# YouTubeToMP3 
+# YouTubeToMP3 <img src="https://raw.githubusercontent.com/lelandsion/youtube-to-mp3/main/flask_app/static/assets/icon.png" alt="Icon" style="width: 1em; height: 1em; vertical-align: middle;">
 
 
 YouTube to MP3 Converter allows you to convert your favourite YouTube videos to MP3 (audio)  files and to download them easily. Try it! [https://ytmp3ls.com](https://ytmp3ls.com).
