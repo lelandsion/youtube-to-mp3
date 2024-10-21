@@ -1,4 +1,4 @@
-# YouTubeToMP3 <img src="https://raw.githubusercontent.com/lelandsion/youtube-to-mp3/main/flask_app/static/assets/icon.png" alt="Icon" style="width: 1em; height: 1em; vertical-align: middle;">
+# YouTubeToMP3 
 
 
 
