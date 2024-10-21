@@ -3,6 +3,8 @@
 
 YouTube to MP3 Converter allows you to convert your favourite YouTube videos to MP3 (audio)  files and to download them easily. Try it! [https://ytmp3ls.com](https://ytmp3ls.com).
 
+![Background](https://raw.githubusercontent.com/lelandsion/youtube-to-mp3/main/flask_app/static/assets/background.png)
+
 
 ## How to download YouTube videos?
 
